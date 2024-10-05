@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-question-card',
@@ -10,18 +10,14 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@a
 })
 export class QuestionCardComponent {
 
-  questionForm: FormGroup;
-
   @Input()
   question!: { id: number, text: string };
 
   @Input()
   form!: FormGroup;
 
-  constructor() {
-    this.questionForm = new FormGroup({
-      formControl: new FormControl('') // Ensure this is FormControl
-    });
+  get answerControl(): FormControl {
+    return this.form.get('answer') as FormControl;
   }
 
 }

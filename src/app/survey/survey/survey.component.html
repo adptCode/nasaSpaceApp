@@ -1,0 +1,9 @@
+<div class="container">
+  <app-progress-bar [progress]="(currentQuestionIndex + 1) / questions.length * 100"></app-progress-bar>
+
+  <app-question-card [question]="questions[currentQuestionIndex]" [form]="surveyForm"></app-question-card>
+
+  <button class="btn btn-primary" (click)="nextQuestion()" [disabled]="surveyForm.invalid">
+    {{ isLastQuestion() ? 'Submit' : 'Next' }}
+  </button>
+</div>

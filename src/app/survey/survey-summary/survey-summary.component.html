@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Suggestions to reduce your carbon footprint:</h2>
+  <ul>
+    @for (suggestion of suggestions; track $index) {
+      <li>{{ suggestion }}</li>
+    }
+    <!-- <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li> -->
+  </ul>
+</div>

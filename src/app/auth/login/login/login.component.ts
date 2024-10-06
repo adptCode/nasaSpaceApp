@@ -22,7 +22,12 @@ export class LoginComponent {
   })
 
   login() {
-    console.log(this.myForm.value)
+    const { email, password } = this.myForm.value;
+
+    this.authService.login(email, password).subscribe( (res) => {
+      console.log(res);
+      this.router.navigate(['/survey']);
+    })
   }
 
 }

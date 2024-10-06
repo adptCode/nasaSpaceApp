@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,8 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
 
   public myForm: FormGroup = this.fb.group({
     email: ['', [ Validators.required, Validators.email ]],
@@ -19,8 +22,13 @@ export class RegisterComponent {
   })
 
   register() {
-    console.log(this.myForm.value)
-  }
+    const { email, password} = this.myForm.value;
 
+     this.authService.register(email, password).subscribe(  (res) => {
+      console.log(res);
+      this.router.navigate(['/login']);
+
+    })
+  }
 
 }

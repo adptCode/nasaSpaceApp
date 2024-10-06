@@ -122,8 +122,44 @@ padding: 20px;
 }
 
 
+/*Boque3*/
 
+.seccion4{
+   height: auto;
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   margin-top: 50px;
+   margin-bottom: 50px;
+}
 
+ h4{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal; 
+    font-size: 3rem;
+}
+.seccion4 p{
+    font-size: 1.1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:grey;
+    text-align: center;
+}
+#map {
+    width: 80%;
+  height: 60vh; 
+  }
+  .mapboxgl-popup {
+    transform: translateY(-100%); /* Ajusta la posición vertical */
+  }
+  
+  .mapboxgl-popup-anchor-top {
+    transform: translateY(-150%); /* Ajusta la posición vertical cuando está anclado en la parte superior */
+  }
+  
 
 /* Estilos responsivos para móviles */
 @media (max-width: 1200px) { 

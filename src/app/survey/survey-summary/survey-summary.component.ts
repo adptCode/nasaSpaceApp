@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class SurveySummaryComponent implements OnInit {
 
   suggestions: { category: string, tasks: string[] }[] = [];
+  answers: { [key: number]: string } = {}; // Le risposte dell'utente
+  submissionMessage: string = '';  // Messaggio di conferma dopo l'invio dei dati
 
   iconMap: { [key: string]: { icon: string, color: string } } = {
     'Energy': { icon: 'bolt', color: '#ff9800' },
@@ -26,6 +28,7 @@ export class SurveySummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.suggestions = this.surveyService.generateSuggestions();
+    this.answers = this.surveyService.getAnswers();  // Assumiamo che il servizio tenga traccia delle risposte
   }
 
   // Funzione per ottenere l'icona in base alla categoria
@@ -36,6 +39,32 @@ export class SurveySummaryComponent implements OnInit {
   // Funzione per ottenere il colore in base alla categoria
   getIconColor(category: string): string {
     return this.iconMap[category]?.color || '#000000'; // Nero di default se la categoria non esiste
+  }
+
+   // Funzione per inviare i risultati al backend
+   saveResults(): void {
+    const payload = {
+      userId: '12345',  // Puoi sostituirlo con un ID utente reale
+      answers: this.answers,
+      suggestions: this.suggestions
+    };
+
+    console.log(payload)
+
+    this.surveyService.saveResults(payload).subscribe({
+      next: response => {
+        this.submissionMessage = 'Data submitted successfully!';
+      },
+      error: error => {
+        this.submissionMessage = 'Error while submitting data.';
+      }
+    });
+  }
+
+  // Funzione per ripetere il questionario
+  repeatSurvey(): void {
+    this.surveyService.resetAnswers();  // Resetta le risposte nel servizio
+    window.location.reload();  // Ricarica la pagina per ricominciare il questionario
   }
 
 }

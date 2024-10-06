@@ -1,20 +1,31 @@
-<div class="container">
+<div class="container-fluid general-cont">
 
-  @if (!surveyComplete) {
+  <div class="row">
+    <div class="col">
 
-    <app-progress-bar [progress]="(currentQuestionIndex) / questions.length * 100"></app-progress-bar>
+      @if (!surveyComplete) {
 
-    <app-question-card [question]="questions[currentQuestionIndex]" [form]="surveyForm"></app-question-card>
+        <app-progress-bar [progress]="(currentQuestionIndex) / questions.length * 100"></app-progress-bar>
 
-    <button class="btn btn-primary" (click)="nextQuestion()" [disabled]="surveyForm.invalid">
-      {{ isLastQuestion() ? 'Submit' : 'Next' }}
-    </button>
+        <app-question-card [question]="questions[currentQuestionIndex]" [form]="surveyForm"></app-question-card>
 
-  }
+        <div class="d-grid gap-2 d-md-block my-3">
+          <button class="btn btn-success" (click)="nextQuestion()" [disabled]="surveyForm.invalid">
+            {{ isLastQuestion() ? 'Submit' : 'Next' }}
+          </button>
+        </div>
 
-  @if (surveyComplete) {
 
-      <app-survey-summary></app-survey-summary>
-  }
+      }
+
+      @if (surveyComplete) {
+
+          <app-survey-summary></app-survey-summary>
+      }
+
+    </div>
+  </div>
+
+
 
 </div>

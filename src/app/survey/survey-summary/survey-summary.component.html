@@ -1,24 +1,46 @@
-<!-- <div class="container">
-  <h2>Suggestions to reduce your carbon footprint:</h2>
-  <p *ngIf="!suggestions.length">No suggestions available</p>
-  <ul>
-    @for (suggestion of suggestions; track $index) {
-      <li>{{ suggestion }}</li>
-    }
-     <li *ngFor="let suggestion of suggestions">{{ suggestion }}</li> -->
-  <!-- </ul>
-</div> --> 
 
 <div class="container">
   <h2>Your personalized suggestions to reduce your carbon footprint:</h2>
 
   <div class="row">
-    <div class="col-md-4" *ngFor="let suggestion of suggestions">
-      <div class="card mb-3">
-        <div class="card-body">
-          <p class="card-text">{{ suggestion }}</p>
+
+     @if (suggestions.length === 1 && suggestions[0].category === 'Well done!') {
+      <div class="col-md-12">
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h5><span class="material-icons">thumb_up</span>{{ suggestions[0].category }}</h5>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let task of suggestions[0].tasks">{{ task }}</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+     } @else {
+      <div class="col-md-4" *ngFor="let suggestion of suggestions">
+        <div class="card mb-3">
+          <div class="card-header text-center">
+            <h5>
+              <span class="material-icons" [ngStyle]="{ 'color': getIconColor(suggestion.category) }">
+                <!-- Mostra l'icona in base alla categoria -->
+                {{ getIconForCategory(suggestion.category) }}
+              </span>
+              {{ suggestion.category }}
+            </h5>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li *ngFor="let task of suggestion.tasks">{{ task }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+     }
+
+
+
+
+

@@ -1,0 +1,14 @@
+.material-icons {
+  font-size: 36px;
+  color: #4caf50; /* Cambia il colore delle icone a verde */
+}
+
+.card-header h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header .material-icons {
+  margin-right: 8px; /* Spaziatura tra l'icona e il testo */
+}

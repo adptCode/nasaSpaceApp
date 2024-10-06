@@ -4,13 +4,16 @@ import { SurveyService } from '../../services/survey.service';
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
 import { QuestionCardComponent } from "../../shared/question-card/question-card.component";
 import { SurveySummaryComponent } from '../survey-summary/survey-summary.component';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-survey',
   standalone: true,
-  imports: [ProgressBarComponent, QuestionCardComponent, SurveySummaryComponent, ReactiveFormsModule],
+  imports: [ProgressBarComponent, QuestionCardComponent, SurveySummaryComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './survey.component.html',
-  styleUrl: './survey.component.css'
+  styleUrl: './survey.component.css',
 })
 export class SurveyComponent implements OnInit {
 

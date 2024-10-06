@@ -22,10 +22,10 @@ export class RegisterComponent {
   })
 
   register() {
-    const { email, password} = this.myForm.value;
-    console.log({email, password});
+    const { username, password} = this.myForm.value;
+    console.log({username, password});
 
-    this.authService.register(email, password).subscribe({
+    this.authService.register(username, password).subscribe({
       next: (res) => {
         console.log('Registration successful:', res);
         this.router.navigate(['/login']);

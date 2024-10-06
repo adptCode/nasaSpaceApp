@@ -23,12 +23,17 @@ export class RegisterComponent {
 
   register() {
     const { email, password} = this.myForm.value;
+    console.log({email, password});
 
-     this.authService.register(email, password).subscribe(  (res) => {
-      console.log(res);
-      this.router.navigate(['/login']);
-
-    })
+    this.authService.register(email, password).subscribe({
+      next: (res) => {
+        console.log('Registration successful:', res);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error('Registration failed:', err);
+      }
+    });
   }
 
 }

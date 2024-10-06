@@ -15,7 +15,8 @@ export class InfoComponent {
   map!: mapboxgl.Map;
 
   // Datos ficticios de emisiones de CO2
-  pollutionData = [];
+  pollutionData: { latitude: number, longitude: number, co2Concentration: number }[] = [];
+
   
   
   popupContent: string | null = null;

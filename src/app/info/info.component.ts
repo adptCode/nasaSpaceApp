@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
 import mapboxgl from 'mapbox-gl';
 import { RouterModule } from '@angular/router';
+import { DatosNasaService } from '../services/datos-nasa.service';
+
 @Component({
   selector: 'app-info',
   standalone: true,
@@ -16,12 +18,15 @@ export class InfoComponent {
   pollutionData = [
     { country: 'China', lat: 35.8617, lon: 104.1954, emissions: 16.65 },
     { country: 'EE. UU.', lat: 37.0902, lon: -95.7129, emissions: 15.52 },
-    { country: 'India', lat: 20.5937, lon: 78.9629, emissions: 18.56 },
+    { country: 'India', lat: 20.5937, lon: 78.9629, emissions: 13.59 },
     { country: 'Rusia', lat: 61.524, lon: 105.3188, emissions: 12.0 },
-    { country: 'Alemania', lat: 51.1657, lon: 10.4515, emissions: 8.92 },
+    { country: 'Alemania', lat: 51.1657, lon: 10.4515, emissions: 6.92 },
+    { country: 'España', lat: 40.4637, lon: -3.7492, emissions: 9.2 }, 
   ];
+  
   popupContent: string | null = null;
-  constructor() {}
+
+  constructor(private datosNasaService: DatosNasaService) {}
 
   ngOnInit(): void {
     this.initializeMap();
@@ -50,6 +55,7 @@ export class InfoComponent {
       attributionControl.remove(); // Eliminar el control de atributos
     }
   }
+
   loadPollutionData() {
     // Agregar los datos de contaminación como un Source
     this.map.addSource('pollution-data', {
@@ -76,44 +82,22 @@ export class InfoComponent {
       type: 'circle',
       source: 'pollution-data',
       paint: {
-        'circle-radius': ['get', 'emissions'], // Radio basado en las emisiones
+        'circle-radius': 10, // Establecer un radio fijo para todos los círculos
         'circle-color': [
           'interpolate',
           ['linear'],
           ['get', 'emissions'],
-          0,
-          '#198754',
-          6,
-          '#FFFF00',
-          15,
-          '#FF0000',
+          0, '#1b5e20',  // Verde oscuro para 0 emisiones
+          3, '#4CAF50',   // Verde medio para emisiones bajas
+          6, '#FFFF00',   // Amarillo para emisiones moderadas
+          9, '#FF9800',   // Naranja para emisiones más altas
+          12, '#FF5722',  // Naranja más oscuro para emisiones altas
+          15, '#FF0000',  // Rojo para emisiones muy altas
         ],
-        'circle-opacity': 0.6,
+        'circle-opacity': 1, // Hacer que los círculos sean completamente opacos
       },
     });
 
-    this.map.on('click', 'pollution-points', (e) => {
-      if (e.features && e.features.length > 0) {
-        const feature = e.features[0];
-
-        // Verificar que la geometría es de tipo 'Point' y que 'properties' no es null o undefined
-        if (feature.geometry.type === 'Point' && feature.properties) {
-          // Asegúrate de que coordinates tiene exactamente dos elementos
-          const coordinates = feature.geometry.coordinates as [number, number]; // Casting a un arreglo de 2 elementos
-
-          // Acceder a 'emissions' usando notación de corchetes
-          const emissions = feature.properties['emissions'];
-          const country = feature.properties['country'];
-
-          new mapboxgl.Popup({  offset: 25 })
-            .setLngLat(coordinates)
-            .setHTML(
-              `<strong>${country}</strong><br>CO2 emissions: ${emissions} tons per capita.`
-            )
-            .addTo(this.map);
-            
-        }
-      }
-    });
+   
   }
 }

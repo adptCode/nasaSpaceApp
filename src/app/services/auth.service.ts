@@ -12,10 +12,10 @@ export class AuthService {
   private baseUrl = 'http://localhost:8080';
 
   register(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/auth/register`, { username, password });
+    return this.http.post(`${this.baseUrl}/api/auth/register`, { username, password }, { responseType: 'text' });
   }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/api/auth/login`, { email, password });
+  login(username: string, password: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/api/auth/login`, { username, password }, { responseType: 'text' });
   }
 }

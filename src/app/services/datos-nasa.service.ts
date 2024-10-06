@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 export class DatosNasaService {
 
   constructor(public http: HttpClient) { }
-
-  getData():Observable<any> {
-    return this.http.get('http://localhost:3000');
+  getData(): Observable<{ latitude: number; longitude: number; co2Concentration: number }[]> {
+    return this.http.get<{ latitude: number; longitude: number; co2Concentration: number }[]>('http://localhost:3000');
   }
 }

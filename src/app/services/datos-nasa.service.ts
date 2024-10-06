@@ -8,6 +8,6 @@ export class DatosNasaService {
 
   constructor(public http: HttpClient) { }
   getData(): Observable<{ latitude: number; longitude: number; co2Concentration: number }[]> {
-    return this.http.get<{ latitude: number; longitude: number; co2Concentration: number }[]>('http://localhost:3000');
+    return this.http.get<{ latitude: number; longitude: number; co2Concentration: number }[]>('http://localhost:8080/api/carbon-footprint');
   }
 }

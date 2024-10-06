@@ -24,10 +24,15 @@ export class LoginComponent {
   login() {
     const { email, password } = this.myForm.value;
 
-    this.authService.login(email, password).subscribe( (res) => {
-      console.log(res);
-      this.router.navigate(['/survey']);
-    })
+    this.authService.login(email, password).subscribe({
+      next: (res) => {
+        console.log('Login successful:', res);
+        this.router.navigate(['/survey']);
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+      }
+    });
   }
 
 }

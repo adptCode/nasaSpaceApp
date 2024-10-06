@@ -9,7 +9,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:8080';
 
   register(email: string, password: string): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/auth/register`, { email, password });

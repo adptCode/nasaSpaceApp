@@ -15,14 +15,8 @@ export class InfoComponent {
   map!: mapboxgl.Map;
 
   // Datos ficticios de emisiones de CO2
-  pollutionData = [
-    {  lat: 35.8617, lon: 104.1954, emissions: 16.65 },
-    {  lat: 37.0902, lon: -95.7129, emissions: 15.52 },
-    { lat: 20.5937, lon: 78.9629, emissions: 13.59 },
-    {  lat: 61.524, lon: 105.3188, emissions: 12.0 },
-    {  lat: 51.1657, lon: 10.4515, emissions: 6.92 },
-    {  lat: 40.4637, lon: -3.7492, emissions: 9.2 }, 
-  ];
+  pollutionData = [];
+  
   
   popupContent: string | null = null;
  datosBack:any
@@ -32,8 +26,8 @@ export class InfoComponent {
     this.initializeMap();
     this.datosNasaService.getData().subscribe(
       (data) => {
-        this.datosBack = data;
-        console.log(this.datosBack);
+        this.pollutionData = data;
+        console.log( this.pollutionData);
       },
       (error) => {
         console.error('Error al obtener los datos', error);
@@ -76,10 +70,10 @@ export class InfoComponent {
           type: 'Feature',
           geometry: {
             type: 'Point',
-            coordinates: [item.lon, item.lat],
+            coordinates: [item.longitude, item.latitude],
           },
           properties: {
-            emissions: item.emissions,
+            emissions: item.co2Concentration,
           },
         })),
       },

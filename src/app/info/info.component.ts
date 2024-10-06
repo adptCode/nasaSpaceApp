@@ -16,20 +16,30 @@ export class InfoComponent {
 
   // Datos ficticios de emisiones de CO2
   pollutionData = [
-    { country: 'China', lat: 35.8617, lon: 104.1954, emissions: 16.65 },
-    { country: 'EE. UU.', lat: 37.0902, lon: -95.7129, emissions: 15.52 },
-    { country: 'India', lat: 20.5937, lon: 78.9629, emissions: 13.59 },
-    { country: 'Rusia', lat: 61.524, lon: 105.3188, emissions: 12.0 },
-    { country: 'Alemania', lat: 51.1657, lon: 10.4515, emissions: 6.92 },
-    { country: 'España', lat: 40.4637, lon: -3.7492, emissions: 9.2 }, 
+    {  lat: 35.8617, lon: 104.1954, emissions: 16.65 },
+    {  lat: 37.0902, lon: -95.7129, emissions: 15.52 },
+    { lat: 20.5937, lon: 78.9629, emissions: 13.59 },
+    {  lat: 61.524, lon: 105.3188, emissions: 12.0 },
+    {  lat: 51.1657, lon: 10.4515, emissions: 6.92 },
+    {  lat: 40.4637, lon: -3.7492, emissions: 9.2 }, 
   ];
   
   popupContent: string | null = null;
-
+ datosBack:any
   constructor(private datosNasaService: DatosNasaService) {}
 
   ngOnInit(): void {
     this.initializeMap();
+    this.datosNasaService.getData().subscribe(
+      (data) => {
+        this.datosBack = data;
+        console.log(this.datosBack);
+      },
+      (error) => {
+        console.error('Error al obtener los datos', error);
+      }
+    );
+
   }
 
   initializeMap() {
@@ -69,7 +79,6 @@ export class InfoComponent {
             coordinates: [item.lon, item.lat],
           },
           properties: {
-            country: item.country,
             emissions: item.emissions,
           },
         })),

@@ -1,7 +1,7 @@
 <div class="container-fluid general-cont">
   <div class="row">
-    <div class="col">
-
+    <div class="col-12 bloqueForm">
+      <div class="formulario">
       <form [formGroup]="myForm" autocomplete="off" (ngSubmit)="login()">
 
         <h2 class="mb-4">Login</h2>
@@ -19,7 +19,7 @@
         <button type="submit" class="btn btn-success w-100" [disabled]="myForm.invalid">Login</button>
 
       </form>
-
+    </div>
     </div>
   </div>
 </div>

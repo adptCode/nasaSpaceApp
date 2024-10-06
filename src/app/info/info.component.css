@@ -244,6 +244,11 @@ h6{
 }
 
 @media (max-width: 480px) { 
+    .bloque1{
+        height: auto;
+        background-color: rgb(17,17,17);
+    padding: 20px;
+    }
     h1 {
         font-size: 3rem; 
       

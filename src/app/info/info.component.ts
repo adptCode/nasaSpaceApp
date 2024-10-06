@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
 import mapboxgl from 'mapbox-gl';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './info.component.html',
   styleUrls: ['./info.component.css'], // Corregido 'styleUrl' a 'styleUrls'
 })

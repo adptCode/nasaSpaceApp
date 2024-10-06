@@ -1,7 +1,7 @@
 .bloque1{
     height: auto;
     background-color: rgb(17,17,17);
- 
+padding: 50px;
 }
 .seccion1{
     height: 100vh;
@@ -16,9 +16,7 @@ h1{
     font-style: normal; 
     color:white ;
     font-size:7rem;
- padding: 20px;
 
- word-spacing: -5px;
    
 }
 h2{
@@ -27,7 +25,7 @@ h2{
     font-style: normal; 
     color:white ;
     font-size: 2.5rem;
-    padding: 20px;
+
 }
 
 .imgPlaneta{
@@ -58,6 +56,7 @@ padding: 20px;
 .bloque2{
     height: auto;
     background-color: rgb(235, 235, 235); 
+  
 }
 .seccion2{
     height: auto;
@@ -123,15 +122,18 @@ padding: 20px;
 
 
 /*Boque3*/
-
+.bloque3{
+    overflow: hidden;
+  
+}
 .seccion4{
    height: auto;
    display: flex;
    flex-direction: column;
   justify-content: center;
   align-items: center;
-   margin-top: 50px;
-   margin-bottom: 50px;
+ margin-top: 50px;
+ margin-bottom: 50px;
 }
 
  h4{
@@ -139,7 +141,9 @@ padding: 20px;
     font-weight: 500;
     font-style: normal; 
     font-size: 3rem;
+    text-align: center;
 }
+
 .seccion4 p{
     font-size: 1.1rem;
     font-family: "Roboto", sans-serif;
@@ -149,8 +153,8 @@ padding: 20px;
     text-align: center;
 }
 #map {
-    width: 80%;
-  height: 60vh; 
+    width: 90%;
+  height: 70vh; 
   }
   .mapboxgl-popup {
     transform: translateY(-100%); /* Ajusta la posición vertical */
@@ -160,7 +164,48 @@ padding: 20px;
     transform: translateY(-150%); /* Ajusta la posición vertical cuando está anclado en la parte superior */
   }
   
+/*bloque4*/
+.bloque4{
+    overflow: hidden;
+}
+.seccion5{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: rgb(17,17,17);
+}
+.text_seccion5{
+    width: 80%;
+    height: auto;
+    text-align: center;
+}
+h4{
+    font-size: 2rem;
+}
+h5{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal; 
+    font-size: 3rem;
+    color:rgb(255, 255, 255); 
+}
+h6{
+    font-size: 2rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:rgb(255, 255, 255);
+    text-align: center;
+}
+.btnRegistro{
+  padding: 20px 50px;
+  font-size: 1.2rem;
 
+}
+.seccion5 img{
+ width: 60%;
+}
 /* Estilos responsivos para móviles */
 @media (max-width: 1200px) { 
     h1 {
@@ -187,7 +232,10 @@ padding: 20px;
     .seccion3 img{
         width: 100%;
     }
- 
+    #map {
+        width: 100%;
+      height: 60vh; 
+      }
 }
 
 @media (max-width: 480px) { 
@@ -198,6 +246,17 @@ padding: 20px;
     h2{
         font-size: 1.5rem; 
     }
+    h5{
+        font-size: 2rem;
+    }
+    h6{
+        font-size: 1rem;
+    }
+    .btnRegistro{
+        padding: 10px 20px;
+        font-size: 1.2rem;
+      
+      }
     .seccion1{
         height: auto;
     }

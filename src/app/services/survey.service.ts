@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class SurveyService {
 
   private answers: { [key: number]: string } = {};
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -106,7 +107,7 @@ export class SurveyService {
 
   // Metodo per inviare i dati al backend
   saveResults(payload: { userId: string, answers: any, suggestions: any }): Observable<any> {
-    return this.http.post('https://example-backend.com/api/results', payload);
+    return this.http.post(`${this.baseUrl}/api/carbon-footprint/log`, payload);
   }
 
   // Metodo per resettare le risposte

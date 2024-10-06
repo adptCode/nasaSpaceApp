@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +8,8 @@ import { Injectable } from '@angular/core';
 export class SurveyService {
 
   private answers: { [key: number]: string } = {};
+
+  constructor(private http: HttpClient) { }
 
   getSurveyQuestions(): { id: number, text: string }[] {
     return [
@@ -16,9 +20,15 @@ export class SurveyService {
     ];
   }
 
+  // Salva le risposte dell'utente
   saveAnswer(questionId: number, answer: string): void {
     console.log(`Answer saved for question ${questionId}: ${answer}`);
     this.answers[questionId] = answer;
+  }
+
+  // Restituisce le risposte salvate
+  getAnswers(): { [key: number]: string } {
+    return this.answers;
   }
 
   // Genera suggerimenti multipli per ogni categoria
@@ -92,6 +102,16 @@ export class SurveyService {
     }
 
     return suggestions;
+  }
+
+  // Metodo per inviare i dati al backend
+  saveResults(payload: { userId: string, answers: any, suggestions: any }): Observable<any> {
+    return this.http.post('https://example-backend.com/api/results', payload);
+  }
+
+  // Metodo per resettare le risposte
+  resetAnswers(): void {
+    this.answers = {};
   }
 }
 

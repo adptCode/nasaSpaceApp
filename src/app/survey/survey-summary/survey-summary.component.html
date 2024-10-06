@@ -2,7 +2,7 @@
 <div class="container">
   <h2>Your personalized suggestions to reduce your carbon footprint:</h2>
 
-  <div class="row">
+  <div class="row my-4">
 
      @if (suggestions.length === 1 && suggestions[0].category === 'Well done!') {
       <div class="col-md-12">
@@ -36,9 +36,22 @@
           </div>
         </div>
       </div>
-
-
      }
+
+
+      <!-- Pulsanti per ripetere il questionario o salvare i dati -->
+  <div class="row mt-3">
+    <div class="col-md-12 text-center d-grid gap-2 d-md-block">
+      <button class="btn btn-secondary mx-2" (click)="repeatSurvey()">Repeat the survey</button>
+      <button class="btn btn-success mx-2" (click)="saveResults()">Save the data</button>
+    </div>
+  </div>
+
+  <!-- Mostra il messaggio di conferma -->
+  <div *ngIf="submissionMessage" class="alert alert-info mt-3">
+    {{ submissionMessage }}
+  </div>
+</div>
 
 
 

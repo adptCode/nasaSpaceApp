@@ -1,0 +1,6 @@
+.general-cont {
+  padding: 50px;
+  background-color: rgb(235, 235, 235) !important;
+  min-height: 100vh; /* Assicura che l'intero viewport sia coperto */
+  box-sizing: border-box; /* Includi il padding nell'altezza totale */
+}

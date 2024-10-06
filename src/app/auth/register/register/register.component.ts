@@ -16,7 +16,7 @@ export class RegisterComponent {
   private authService = inject(AuthService);
 
   public myForm: FormGroup = this.fb.group({
-    email: ['', [ Validators.required, Validators.email ]],
+    username: ['', [ Validators.required, Validators.email ]],
     password: ['', [ Validators.required, Validators.minLength(6) ]],
     password2: ['', [ Validators.required, Validators.minLength(6) ]],
   })
